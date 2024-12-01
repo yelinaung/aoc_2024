@@ -1,18 +1,35 @@
-import sys
 from collections import Counter
+from typing import Iterable
+
 
 """
 https://adventofcode.com/2024/day/1
 """
 
-with open(sys.argv[1]) as f:
-    data = [tuple(map(int, line.split())) for line in f]
 
-# Part 1
-left, right = zip(*data)
-left, right = sorted(left), sorted(right)
-print(sum([abs(L - R) for L, R in zip(left, right)]))
+def prepare_data(file_name: str) -> Iterable[tuple[int, ...]]:
+    with open(file_name) as f:
+        data = [tuple(map(int, line.split())) for line in f]
+    return zip(*data)
 
-# Part 2
-right = Counter(right)
-print(sum([L * right.get(L, 0) for L in left]))
+
+def part_1(file_name: str) -> int:
+    left, right = prepare_data(file_name)
+    return sum([abs(L - R) for L, R in zip(sorted(left), sorted(right))])
+
+
+def part_2(file_name: str) -> int:
+    left, right = prepare_data(file_name)
+    return sum([L * Counter(right).get(L, 0) for L in left])
+
+
+def test_part_1():
+    assert part_1("day_1/sample.txt") == 11
+
+    print(part_1("day_1/data.txt"))
+
+
+def test_part_2():
+    assert part_2("day_1/sample.txt") == 31
+
+    print(part_2("day_1/data.txt"))
