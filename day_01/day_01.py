@@ -24,12 +24,12 @@ def part_2(file_name: str) -> int:
 
 
 def test_part_1():
-    assert part_1("day_1/sample.txt") == 11
+    assert part_1("day_01/sample.txt") == 11
 
-    print(part_1("day_1/data.txt"))
+    print(part_1("day_01/data.txt"))
 
 
 def test_part_2():
-    assert part_2("day_1/sample.txt") == 31
+    assert part_2("day_01/sample.txt") == 31
 
-    print(part_2("day_1/data.txt"))
+    print(part_2("day_01/data.txt"))
