@@ -29,11 +29,7 @@ def valid_sequence(nums) -> bool:
 
 def part_1(file_name):
     data = prepare_data(file_name)
-    count = 0
-    for nums in data:
-        count += 1 if valid_sequence(nums) else 0
-
-    return count
+    return sum(1 if valid_sequence(nums) else 0 for nums in data)
 
 
 def test_part_1():
