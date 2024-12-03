@@ -51,6 +51,6 @@ def test_part_1():
     print(part_1("day_02/data.txt"))
 
 
-def test_part_22():
+def test_part_2():
     assert part_2("day_02/sample.txt") == 4
     print(part_2("day_02/data.txt"))
