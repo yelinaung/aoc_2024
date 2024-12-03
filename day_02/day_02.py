@@ -33,11 +33,7 @@ def problem_damper(nums: List[int]):
     if valid_sequence(nums):
         return True
 
-    for i in range(len(nums)):
-        if valid_sequence(nums[:i] + nums[i + 1 :]):
-            return True
-
-    return False
+    return any(valid_sequence(nums[:i] + nums[i + 1 :]) for i in range(len(nums)))
 
 
 def part_1(file_name: str) -> int:
