@@ -29,11 +29,32 @@ def valid_sequence(nums: List[int]) -> bool:
     return True
 
 
+def problem_damper(nums: List[int]):
+    if valid_sequence(nums):
+        return True
+
+    for i in range(len(nums)):
+        if valid_sequence(nums[:i] + nums[i + 1 :]):
+            return True
+
+    return False
+
+
 def part_1(file_name: str) -> int:
     data = prepare_data(file_name)
     return sum(1 if valid_sequence(nums) else 0 for nums in data)
 
 
+def part_2(file_name: str) -> int:
+    data = prepare_data(file_name)
+    return sum(1 if problem_damper(nums) else 0 for nums in data)
+
+
 def test_part_1():
     assert part_1("day_02/sample.txt") == 2
     print(part_1("day_02/data.txt"))
+
+
+def test_part_22():
+    assert part_2("day_02/sample.txt") == 4
+    print(part_2("day_02/data.txt"))
