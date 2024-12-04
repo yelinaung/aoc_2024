@@ -5,16 +5,12 @@ mul_re = re.compile(r"mul\((\d+),\s*(\d+)\)")
 
 
 def part_1(file_name: str) -> int:
+    total = 0
     with open(file_name) as f:
-        total = 0
-        data = " ".join([line.strip() for line in f.readlines()])
-        matches = re.finditer(filter_re, data, re.MULTILINE)
-        for m in matches:
-            # let there be warlus!
-            if match := mul_re.match(m.group()):
+        for line in f:
+            for match in mul_re.finditer(line.strip()):
                 x, y = map(int, match.groups())
                 total += x * y
-
     return total
 
 
