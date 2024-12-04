@@ -1,16 +1,17 @@
 import re
 
-regex = r"mul\(\d+,\d+\)"
+filter_re = r"mul\(\d+,\d+\)"
+mul_re = re.compile(r"mul\((\d+),\s*(\d+)\)")
 
 
 def part_1(file_name: str) -> int:
     with open(file_name) as f:
         total = 0
-        data = " ".join([L.strip() for L in f.readlines()])
-        matches = re.finditer(regex, data, re.MULTILINE)
+        data = " ".join([line.strip() for line in f.readlines()])
+        matches = re.finditer(filter_re, data, re.MULTILINE)
         for m in matches:
-            match = re.match(r"mul\((\d+),\s*(\d+)\)", m.group())
-            if match:
+            # let there be warlus!
+            if match := mul_re.match(m.group()):
                 x, y = map(int, match.groups())
                 total += x * y
 
