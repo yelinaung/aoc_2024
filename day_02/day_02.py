@@ -11,12 +11,15 @@ def prepare_data(file_name: str):
 
 
 def valid_sequence(nums: List[int]) -> bool:
+    # empty list or a list with only 1 item -> valid
     if not nums or len(nums) < 2:
         return True
 
     direction: bool | None = None
     for i in range(len(nums) - 1):
+        # diff between next item and the current
         diff = nums[i + 1] - nums[i]
+        # invalid if the diff is between 1 and 3
         if not (1 <= abs(diff) <= 3):
             return False
 
