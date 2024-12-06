@@ -51,6 +51,9 @@ def part_2(input_file: str) -> int:
     with open(input_file) as f:
         grid.extend([x.strip() for x in f.readlines()])
 
+    def has_diagonal_pattern(diagonals: List[str]) -> bool:
+        return diagonals.count("M") == 2 and diagonals.count("S") == 2
+
     rows: int = len(grid)
     cols: int = len(grid[0])
     count: int = 0
@@ -58,15 +61,8 @@ def part_2(input_file: str) -> int:
         for c in range(1, cols - 1):
             if grid[r][c] != "A":
                 continue
-            up_left: str = grid[r - 1][c - 1]
-            up_rght: str = grid[r - 1][c + 1]
-            down_left: str = grid[r + 1][c - 1]
-            down_rght: str = grid[r + 1][c + 1]
-            count += (
-                1
-                if sorted([up_left, up_rght, down_left, down_rght]) == ["M", "M", "S", "S"] and up_left != down_rght
-                else 0
-            )
+            if has_diagonal_pattern([grid[r - 1][c - 1], grid[r - 1][c + 1], grid[r + 1][c - 1], grid[r + 1][c + 1]]):
+                count += 1
     return count
 
 
