@@ -1,3 +1,6 @@
+from typing import List
+
+
 def part_1(input_file: str) -> int:
     grid = []
     with open(input_file) as f:
@@ -44,7 +47,27 @@ def part_1(input_file: str) -> int:
 
 
 def part_2(input_file: str) -> int:
-    return 0
+    grid: List[str] = []
+    with open(input_file) as f:
+        grid.extend([x.strip() for x in f.readlines()])
+
+    rows: int = len(grid)
+    cols: int = len(grid[0])
+    count: int = 0
+    for r in range(1, rows - 1):
+        for c in range(1, cols - 1):
+            if grid[r][c] != "A":
+                continue
+            up_left: str = grid[r - 1][c - 1]
+            up_rght: str = grid[r - 1][c + 1]
+            down_left: str = grid[r + 1][c - 1]
+            down_rght: str = grid[r + 1][c + 1]
+            count += (
+                1
+                if sorted([up_left, up_rght, down_left, down_rght]) == ["M", "M", "S", "S"] and up_left != down_rght
+                else 0
+            )
+    return count
 
 
 def test_part_1():
@@ -52,6 +75,6 @@ def test_part_1():
     print(f'\nPart 1 {part_1("day_04/data.txt")}')
 
 
-# def test_part_2():
-#     assert part_2("day_04/sample_2.txt") == 9
-#     print(f'\nPart 2 {part_2("day_04/data.txt")}')
+def test_part_2():
+    assert part_2("day_04/sample_2.txt") == 9
+    print(f'\nPart 2 {part_2("day_04/data.txt")}')
