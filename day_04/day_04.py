@@ -68,9 +68,9 @@ def part_2(input_file: str) -> int:
 
 def test_part_1():
     assert part_1("day_04/sample.txt") == 18
-    print(f'\nPart 1 {part_1("day_04/data.txt")}')
+    print(f"\nPart 1 {part_1('day_04/data.txt')}")
 
 
 def test_part_2():
     assert part_2("day_04/sample_2.txt") == 9
-    print(f'\nPart 2 {part_2("day_04/data.txt")}')
+    print(f"\nPart 2 {part_2('day_04/data.txt')}")

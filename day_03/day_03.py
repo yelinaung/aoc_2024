@@ -43,9 +43,9 @@ def part_2(file_name: str) -> int:
 
 def test_part_1():
     assert part_1("day_03/sample.txt") == 161
-    print(f'\nPart 1 {part_1("day_03/data.txt")}')
+    print(f"\nPart 1 {part_1('day_03/data.txt')}")
 
 
 def test_part_2():
     assert part_2("day_03/sample2.txt") == 48
-    print(f'\nPart 2 {part_2("day_03/data.txt")}')
+    print(f"\nPart 2 {part_2('day_03/data.txt')}")
